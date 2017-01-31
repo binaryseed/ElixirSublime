@@ -73,6 +73,8 @@ def find_mix_project(cwd=None):
     cwd = cwd or os.getcwd()   
     if cwd == os.path.realpath('/'):
         return None
+    elif 'apps' in cwd:
+        return find_mix_project(os.path.dirname(cwd))
     elif os.path.exists(os.path.join(cwd, 'mix.exs')):
         return cwd
     else: 
